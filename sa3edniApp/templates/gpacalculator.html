@@ -1,0 +1,61 @@
+{% extends 'template.html'%}
+
+{% block content%}
+
+
+<div class="py-5 w-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 h-50">
+        <h2 class="text-center">How to use GPA calculator</h2>
+        <div class="embed-responsive embed-responsive-16by9">
+          <video src="https://static.pingendo.com/video-placeholder.mp4" class="embed-responsive-item" controls="controls"> Your browser does not support HTML5 video. </video>
+        </div>
+      </div>
+      <div class="col-md-4 w-50">
+        <form class="form-inline" action="/calculator" method="POST">
+          {% csrf_token %}
+          <!-- <div class="input-group">
+            <input type="text" class="form-control" name="currentGPA">
+            <div class="input-group-append">&nbsp; Current GPA</div>
+          </div> -->
+
+          <div class="input-group">
+            <input type="number" class="form-control" min="0" max="100" name="neededGPA">
+            <div class="input-group-append">&nbsp; Needed Gpa</div>
+          </div>
+          <div class="input-group">
+            <div class="input-group-append">Markes/Grades</div>
+          </div>
+          {% for course in courses %}
+            <div class="input-group">
+              <input type="number" max="{{course.maxGrade}}" value="{{course.maxGrade}}" name="{{course.name}}" class="form-control">
+              <div class="input-group-append">&nbsp; {{course.name}}</div>
+            </div>
+          {% endfor %}
+        
+      </div>
+      {% if results %}
+      <div class="col-md-4">
+        <h2 class="text-center">Results</h2>
+        Your current GPA: {{currentGPA}} <br>
+        You need {{neededTotal}} Grades in total<br>
+        We suggest the below to reach an Average of {{newGPA}}
+        {% for course in modifiedCourses %}
+          <div>
+            <p class="lead">you need to get {{course.grade}} in {{course.subject}}</p>
+            <!-- <h3 class="">{{course.subject}}</h3> -->
+          </div> 
+        {% endfor %}
+       
+      </div>
+      {% endif %}
+    </div>
+    <div class="row w-100">
+      <div class="col-md-12 text-center"><input type="submit" class="btn btn-primary" value="Calculate"></div>
+      {{avg}}
+    </div>
+  </form>
+  </div>
+</div>
+  {% endblock %}

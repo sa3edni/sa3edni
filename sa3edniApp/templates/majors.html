@@ -1,0 +1,48 @@
+{% extends 'template.html'%}
+
+{% block content%}
+<div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-4"></h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="lead">Know more about this university's majors and their prices</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-striped table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Major Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">About</th>
+                </tr>
+              </thead>
+              <tbody>
+                 {% for major in majors %}
+                     <tr>
+                        <th scope="row">1</th>
+                        <td>{{major.majorName}}</td>
+                        <td>{{major.price}}</td>
+                        <td>{{major.description}}</td>
+                     </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

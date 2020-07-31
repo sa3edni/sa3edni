@@ -1,0 +1,58 @@
+
+{% extends "template.html" %}
+{% block content %}
+
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-md-4">
+          <h2 class="">Name:</h2>
+          <h4 class="" style="">Waseem</h4>
+          <h2 class="">Email:</h2>
+          <h4 class="">was20150620@gmail.com</h4>
+          <h2 class="">Phone&nbsp; number:</h2>
+          <h4 class="">0777412882</h4>
+          <a class="btn btn-primary" href="#">Edit Profile</a>
+          <a class="btn btn-primary" href="#">Edit Password</a>
+        </div>
+        <div class="col-md-4">
+          <form id="c_form-h" class="">
+            <div class="form-group row">
+              <div class="col-10">
+                <input type="text" class="form-control" id="inputmailh" placeholder="Input your name......" required="required"> </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-10">
+                <input type="number" class="form-control" id="inputpasswordh" placeholder="Input phone number....."> </div>
+            </div><a class="btn btn-primary" href="#" contenteditable="true">Confirm</a>
+          </form>
+        </div>
+        <div class="col-md-4">
+          <form id="c_form-h" class="">
+            <div class="form-group row">
+              <div class="col-10">
+                <input type="email" class="form-control" id="inputmailh" placeholder="Enter old password"> </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-10">
+                <input type="password" class="form-control" id="inputpasswordh" placeholder="Enter new password"> </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-10">
+                <input type="password" class="form-control" id="inputpasswordh" placeholder="Enter new password again"> </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
