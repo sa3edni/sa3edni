@@ -113,11 +113,32 @@ def unis(request):
     rows = []
     for i in range(0,len(universities),2):
         if i < len(universities)-1:
-            rows.append(universities[i:i+2])
+            uni1 = {
+                "pk": universities[i].pk,
+                "uniName": universities[i].uniName,
+                "description": universities[i].description[:250],
+                "image": universities[i].image
+            }
+            uni2 = {
+                "pk": universities[i+1].pk,
+                "uniName": universities[i+1].uniName,
+                "description": universities[i+1].description[:250],
+                "image": universities[i+1].image
+            }
+
+            rows.append([uni1,uni2])
         else:
-            rows.append([universities[i]])
+            uni = {
+                "pk": universities[i].pk,
+                "uniName": universities[i].uniName,
+                "description": universities[i].description[:250],
+                "image": universities[i].image
+            }
+            rows.append([uni])
     data = {"rows": rows}
+
     return render(request,"Universities.html",data)
+
 
 def calculator(request):
     if "id" not in request.session:
