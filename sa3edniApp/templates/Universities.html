@@ -9,7 +9,7 @@
                 <div class="row">
                     {% for uni in row %}
                         <div class="col-md-6 p-3">
-                            <h2 class="">{{uni.uniName}}</h2><img class="img-fluid d-block" src="https://static.pingendo.com/cover-bubble-light.svg" width="1500">
+                            <h2 class="">{{uni.uniName}}</h2><img class="img-fluid d-block" src="{{uni.image}}" width="1500">
                             <p class="mt-2 mb-0">{{uni.description}}</p><a class="btn btn-primary" href="/unimore?id={{uni.pk}}">Majors</a>
                         </div>
                     {% endfor %}

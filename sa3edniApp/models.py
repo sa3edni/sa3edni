@@ -22,6 +22,7 @@ class News(models.Model):
 class University(models.Model):
     uniName = models.CharField(max_length=50, primary_key=True)
     description = models.TextField()
+    image = models.ImageField(upload_to = 'static/images/unis', blank = True)
     class Meta:
         verbose_name_plural = "universities"
 
@@ -30,6 +31,7 @@ class Major(models.Model):
     minAvg = models.FloatField(default=60)
     description = models.TextField()
     university = models.ForeignKey("University",on_delete=models.CASCADE, default = "")
+    majorType = models.CharField(max_length= 20, default="")
     streamsOptions = [
         ("Scientific","Scientific"),
         ("Literature","Literature"),

@@ -68,7 +68,36 @@ def signout(request):
 
  
 def profile(request):
-    return render(request, "profile.html")
+    if "id" not in request.session:
+        return redirect("/signin")
+    user = Student.objects.get(pk = request.session["id"])
+    data = {"user": user}
+    if request.method == "POST":
+        user.fName = request.POST["fName"]
+        user.lName = request.POST["lName"]
+        user.save()
+
+    return render(request, "profile.html",data)
+
+def resetPassword(request):
+    if "id" not in request.session:
+        return redirect("/signin")
+    
+    if request.method != "POST":
+        return redirect("/profile")
+    user = Student.objects.get(pk = request.session["id"])
+    data = {"user": user}
+    if not check_password(request.POST["oldPass"],user.password):
+        data["error"] = "Your old password isn't correct"
+        return render(request, "profile.html",data)
+    if request.POST["newPass"] != request.POST["newPass2"]:
+        data["error"] = "Your passwods don't match"
+        return render(request, "profile.html",data)
+    user.password = make_password(request.POST["newPass"])
+    user.save()
+    data["success"] = "Your password has been reset successfully"
+
+    return render(request, "profile.html",data)
 
 def majorselection(request):
     return render(request, "majorselection.html")    
@@ -165,4 +194,12 @@ def uniMore(request):
     majors = Major.objects.filter(university = university)
     data = {"majors":majors, "uniName":university.uniName}
     return render(request, "majors.html",data)
-    
+
+def newsMore(request):
+    news = News.objects.get(id=request.GET["id"])
+    data = {
+        "title":news.title,
+        "content": news.body,
+        "image": news.image
+    }
+    return render(request, "newsMore.html", data)

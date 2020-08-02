@@ -14,6 +14,8 @@ urlpatterns = [
     path("download", views.download),
     path("about", views.about),
     path("unis", views.unis),
-    path("unimore",views.uniMore)
+    path("unimore",views.uniMore),
+    path("readmore",views.newsMore),
+    path("resetpass", views.resetPassword)
 ]
 
