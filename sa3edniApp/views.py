@@ -140,6 +140,17 @@ def unis(request):
     return render(request,"Universities.html",data)
 
 
+def readMoreUni(request)
+    news = News.objects.get(id=request.GET["id"])
+    uni = University.objects.get(id=request.GET["id"])
+    data = {
+        "pk": uni.pk,
+        "uniName": uni.uniName,
+        "description": uni.description[:250],
+        "image": uni.image
+    }
+    return render(request, "newsMore.html", data)
+
 def calculator(request):
     if "id" not in request.session:
         return redirect("/signin")

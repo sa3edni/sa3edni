@@ -17,6 +17,6 @@ urlpatterns = [
     path("unimore",views.uniMore),
     path("readmore",views.newsMore),
     path("resetpass", views.resetPassword),
-    path("resetpass", views.resetPassword)
+    path("moreaboutuni", views.readMoreUni)
 ]
 
