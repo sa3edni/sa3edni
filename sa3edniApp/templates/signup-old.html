@@ -1,0 +1,51 @@
+{% extends 'template.html' %}
+
+{% block content%}
+<div class="py-5 w-50 text-center" style="	margin: 0 auto;	background-image: url(pngtree-linear-sticker-school-life-sticker-green-chalkboard-background-image_304139.jpg);	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
+  <div class="container pt-4 pb-4" style="border: 1px solid; border-radius: 25px; border-color: rgb(0, 58, 106);">
+    <div class="row">
+      <div class="col-md-12"><i class="fa fa-user-circle fa-5x"></i></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+        <h2 class="text-center">Sign Up</h2>
+        <form class="form-inline my-2" action="/signup" method="POST">
+          {% csrf_token %}
+          <div class="form-group pr-3">
+            <input type="text" class="form-control" id="inputmailinline" placeholder="First Name" required="required" name = "fName"> </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="inputpasswordinline" placeholder="Last Name" required="required" name= "lName"> </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+          <div class="form-group row">
+            <div class="col-10">
+              <input type="email" class="form-control" id="inputmailh" placeholder="Email" required="required" name="email"> </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-10">
+              <input type="password" class="form-control" id="inputpasswordh" placeholder="Password" required="required" name="password"> </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-10">
+              <input type="password" class="form-control" id="inputpasswordh" placeholder="Confirm Password" required="required" name="password2"> </div>
+              <h5 class="pl-2 pt-2">Choose your stream</h5>
+            <div class="pt-2 pl-2">
+              <select name="stream" id="stream">
+                {% for stream in streams %}
+                  <option value="{{stream}}">{{stream}}</option>
+                {% endfor %}
+              </select> 
+            </div>
+          </div>
+          <p style="color:red" > {{error}} </p>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+      </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
