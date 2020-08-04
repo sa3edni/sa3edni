@@ -1,111 +1,308 @@
 {% extends 'template.html'%}
 
 {% block content %}
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="carousel slide" data-ride="carousel" id="carousel" data-interval="false">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="mx-auto col-md-8">
-                  <h2 class="">Question --------------------------------------------?</h2>
-                  <!-- Group of default radios - option 1 -->
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" checked="">
-                    <label class="custom-control-label" for="defaultGroupExample1">Option 1</label>
-                  </div>
-                  <!-- Group of default radios - option 2 -->
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios">
-                    <label class="custom-control-label" for="defaultGroupExample2">Option 2</label>
-                  </div>
-                  <!-- Group of default radios - option 3 -->
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
-                    <label class="custom-control-label" for="defaultGroupExample3">Option 3</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample4" name="groupOfDefaultRadios">
-                    <label class="custom-control-label" for="defaultGroupExample4">Option 4</label>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="col-md-8 mx-auto">
-                  <h2 class="">Question --------------------------------------------?</h2>
-                  <!-- Group of default radios - option 1 -->
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" checked="">
-                    <label class="custom-control-label" for="defaultGroupExample1">Option 1</label>
-                  </div>
-                  <!-- Group of default radios - option 2 -->
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios">
-                    <label class="custom-control-label" for="defaultGroupExample2">Option 2</label>
-                  </div>
-                  <!-- Group of default radios - option 3 -->
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
-                    <label class="custom-control-label" for="defaultGroupExample3">Option 3</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample4" name="groupOfDefaultRadios">
-                    <label class="custom-control-label" for="defaultGroupExample4">Option 4</label>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="col-md-8 mx-auto">
-                  <h2 class="">Question --------------------------------------------?</h2>
-                  <!-- Group of default radios - option 1 -->
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios" checked="">
-                    <label class="custom-control-label" for="defaultGroupExample1">Option 1</label>
-                  </div>
-                  <!-- Group of default radios - option 2 -->
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios">
-                    <label class="custom-control-label" for="defaultGroupExample2">Option 2</label>
-                  </div>
-                  <!-- Group of default radios - option 3 -->
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
-                    <label class="custom-control-label" for="defaultGroupExample3">Option 3</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input type="radio" class="custom-control-input" id="defaultGroupExample4" name="groupOfDefaultRadios">
-                    <label class="custom-control-label" for="defaultGroupExample4">Option 4</label>
-                  </div>
-                </div>
-              </div>
-            </div> <a class="carousel-control-prev bg-primary" href="#carousel" role="button" data-slide="prev"> <span class="carousel-control-prev-icon text-dark"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next bg-primary" href="#carousel" role="button" data-slide="next"> <span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span> </a>
+
+  <form class="container" method = "POST" action="/mselection">
+      {% csrf_token %}
+      <h3>Please answer all of the questions so we can help you choose the best major for you.</h3><br>
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">How would you rate yourself at Math ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Math" id = "optionsRadios1" value = "1" checked>
+            Poor
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Math" id = "optionsRadios2" value = "2">
+               Not Bad
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Math" id = "optionsRadios3" value = "3">
+               Good
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Math" id = "optionsRadios4" value = "4">
+               Very Good
+         </label>
+      </div>
+      </div>
+     <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">How would you rate yourself at Biology ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Biology" id = "optionsRadios1" value = "1" checked>
+            Poor
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Biology" id = "optionsRadios2" value = "2">
+               Not Bad
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Biology" id = "optionsRadios3" value = "3">
+               Good
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Biology" id = "optionsRadios4" value = "4">
+               Very Good
+         </label>
+      </div>
+      </div>
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">How would you rate yourself at Physics ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Physics" id = "optionsRadios1" value = "1" checked>
+            Poor
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Physics" id = "optionsRadios2" value = "2">
+               Not Bad
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Physics" id = "optionsRadios3" value = "3">
+               Good
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Physics" id = "optionsRadios4" value = "4">
+               Very Good
+         </label>
+      </div>
+      </div>
+
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">How would you rate yourself at Computer Skills?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Computer" id = "optionsRadios1" value = "1" checked>
+            Poor
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Computer" id = "optionsRadios2" value = "2">
+               Not Bad
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Computer" id = "optionsRadios3" value = "3">
+               Good
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Computer" id = "optionsRadios4" value = "4">
+               Very Good
+         </label>
+      </div>
+      </div>
+
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">Do you concider yourself interested in Technology career field ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "ComputerIntrest" id = "optionsRadios1" value = "1" checked>
+            Yes
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "ComputerIntrest" id = "optionsRadios2" value = "0">
+            No
+         </label>
+      </div>
+      </div>
+
+
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">Do you think you will be able to have your own company in the future ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "EntrepreneurshipIntrest" id = "optionsRadios1" value = "1" checked>
+            Yes
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "EntrepreneurshipIntrest" id = "optionsRadios2" value = "0">
+            No
+         </label>
+      </div>
+      </div>
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">Do you like to interact with customers ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "CustomerInteraction" id = "optionsRadios1" value = "1" checked>
+            Yes
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "CustomerInteraction" id = "optionsRadios2" value = "0">
+            No
+         </label>
+      </div>
+      </div>
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">Do you have any musical talents ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "MusicIntrest" id = "optionsRadios1" value = "1" checked>
+            Yes
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "MusicIntrest" id = "optionsRadios2" value = "0">
+            No
+         </label>
+      </div>
+      </div>
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">Do you have painting talent ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "PaintingIntrest" id = "optionsRadios1" value = "1" checked>
+            Yes
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "PaintingIntrest" id = "optionsRadios2" value = "0">
+            No
+         </label>
+      </div>
+      </div>
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">Do you concider yourself accurate while doing the tasks you are given ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Accurate" id = "optionsRadios1" value = "1" checked>
+            Yes
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Accurate" id = "optionsRadios2" value = "0">
+            No
+         </label>
+      </div>
+      </div>
+
+
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">Do you have any intrests in building things and designing them ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "BuildingIntrest" id = "optionsRadios1" value = "1" checked>
+            Yes
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "BuildingIntrest" id = "optionsRadios2" value = "0">
+            No
+         </label>
+      </div>
+      </div>
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">Do you think you could be resposible to take care of others health ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "HealthCare" id = "optionsRadios1" value = "1" checked>
+            Yes
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "HealthCare" id = "optionsRadios2" value = "0">
+            No
+         </label>
+      </div>
+      </div>
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">Do you love doing reaserch ?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "ResearchIntrest" id = "optionsRadios1" value = "1" checked>
+            Yes
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "ResearchIntrest" id = "optionsRadios2" value = "0">
+            No
+         </label>
+      </div>
+      </div>
+
+      <div class="container" style="border-bottom: 5px solid rgb(0, 58, 106)">
+         <label for = "name">What is your Tawjihi Stream?</label>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Stream" id = "optionsRadios1" value = "1" checked>
+            Scientefic
+         </label>
+      </div>
+      <div class = "radio">
+         <label>
+            <input type = "radio" name = "Stream" id = "optionsRadios2" value = "0">
+            Literature
+         </label>
+      </div>
+      </div>
+
+     <input type="submit" class="btn btn-primary mt-1" style="text-align: center;" value="Find">
+      </form>
+
+    {% if results %}
+
+          <div class = "container">
+            <h3>
+                According to our expert system:<br>
+                Your are likely to succeed in a <em><strong>{{prediction}}</strong></em> feild find below some suggested majors according to your answers:<br>
+            </h3>
+
+                {% for major in majors %}
+                    <h5 style="border-bottom: 2px solid black;">
+                    {{major}} <br>
+                    <!--{{major.university.uniName}}-->
+                    </h5>
+                {% endfor %}
+
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-1">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12"><a class="btn btn-primary" href="#">Search for a major</a></div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><b>Major Name:&nbsp;</b></h5>
-              <h4 class="">Name..........</h4>
-              <h5 class="card-title"><b>Major Description:&nbsp;</b></h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    {% endif %}
+
+
+
 {% endblock %}

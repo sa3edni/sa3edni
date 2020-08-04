@@ -9,6 +9,7 @@
         <div class="p-5 col-lg-6">
           <h1>Sign Up</h1>
           <form action="/signup" method="POST">
+              {% csrf_token %}
             <div class="form-group"> <input type="text" class="form-control" placeholder="First Name" id="form11" name = "fName"> </div>
             <div class="form-group"> <input type="text" class="form-control" placeholder="Last Name" id="form11" name= "lName"> </div>
             <div class="form-group"> <input type="email" class="form-control" placeholder="Enter email" id="form11" name="email"> </div>
@@ -21,7 +22,7 @@
                   {% endfor %}
                               </select>
                 </div> <small class="form-text text-muted text-right"></small>
-            </div> 
+            </div>
             <p style="color:red" > {{error}} </p>
             <button type="submit" class="btn btn-primary">Sign Up</button>
           </form>

@@ -11,9 +11,10 @@ class Student(models.Model):
         ("Literature","Literature")
     ]
     stream = models.CharField(max_length=25, choices=streamsOptions)
+    activated = models.BooleanField(default=False)
 
 class News(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=120)
     body = models.TextField()
     image = models.ImageField(upload_to = 'static/images/news', blank = True)
     class Meta:

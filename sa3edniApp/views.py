@@ -1,13 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import News, Student, Subject, Major, University
-from django.contrib.auth.tokens import PasswordResetTokenGenerator  
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils import six
 from random import choice
 from django.contrib.auth.hashers import make_password, check_password
 import math
-
+from .majorSelector import predict
 #from django.core.mail import EmailMessage
-# Create your views here.
 
 
 def randomString():
@@ -15,8 +14,8 @@ def randomString():
     return ''.join(choice(letters) for i in range(15))
 
 class TokenGenerator(PasswordResetTokenGenerator):
-    def _make_hash_value(self, user, timestamp):
-            return ( six.text_type(user.pk) + six.text_type(timestamp) + six.text_type(user.validated) )
+    def _make_hash_value(self, std, timestamp):
+            return ( six.text_type(std.pk) + six.text_type(timestamp))
 
 def home(request):
     data = {
@@ -43,7 +42,10 @@ def signup(request):#add stream to signup
         newStudent.password = make_password(request.POST["password"])
         newStudent.stream = request.POST["stream"]
         newStudent.save()
-        return redirect("/")
+        message = "test"
+        EmailMessage("Sa3edniUni account activation", message, to=[request.POST["email"]])
+        data["error"] = "Check your email We have sent you an activation link"
+        return render(request,"signup.html", data)
     else:
         return render(request,"signup.html",data)
 
@@ -55,7 +57,10 @@ def signin(request):
         users = users[0]
         password = request.POST["password"]
         if check_password(password,users.password):
+            if not users.activated:
+                return render(request, "signin.html",{"error":"Please activate your email to login"})
             request.session["id"] = users.pk
+            request.session["name"] = users.fName + " " + users.lName
             return redirect("/")
         return render(request, "signin.html",{"error":"The email or the password is incorrect"})
     else:
@@ -66,7 +71,7 @@ def signout(request):
         del request.session["id"]
     return redirect("/")
 
- 
+
 def profile(request):
     if "id" not in request.session:
         return redirect("/signin")
@@ -82,7 +87,7 @@ def profile(request):
 def resetPassword(request):
     if "id" not in request.session:
         return redirect("/signin")
-    
+
     if request.method != "POST":
         return redirect("/profile")
     user = Student.objects.get(pk = request.session["id"])
@@ -99,8 +104,25 @@ def resetPassword(request):
 
     return render(request, "profile.html",data)
 
-def majorselection(request):
-    return render(request, "majorselection.html")    
+def majorSelection(request):
+    if "id" not in request.session:
+        return redirect("/signin")
+    if request.method == "POST":
+        properties = ((request.POST["Math"],request.POST["Biology"],request.POST["Physics"],request.POST["Computer"],request.POST["ComputerIntrest"],request.POST["EntrepreneurshipIntrest"],request.POST["CustomerInteraction"],request.POST["MusicIntrest"],request.POST["PaintingIntrest"],request.POST["Accurate"],request.POST["BuildingIntrest"],request.POST["HealthCare"],request.POST["ResearchIntrest"],request.POST["Stream"]))
+        machineLearningOutput = predict(properties)
+        majorObjects = Major.objects.filter(majorType = machineLearningOutput)
+        majors = []
+        for major in majorObjects:
+            majors.append(major.majorName)
+        data = {
+            "prediction": machineLearningOutput,
+            "majors": set(majors),
+            "results": True
+        }
+        return render(request, "majorselection.html", data)
+
+    return render(request, "majorselection.html")
+
 
 def download(request):
     return render(request, "download.html")
@@ -186,12 +208,12 @@ def calculator(request):
         neededTotal = neededGPA / 100  * total
         neededTotal -= studentTotal
         neededGradesPerSubject = math.ceil(neededTotal/len(belowAVG))
-        
+
         for i in belowAVG:
             i["grade"] += neededGradesPerSubject
             i["modified"] = True
         data["neededTotal"] = neededTotal
-        data["currentGPA"] = (100/total) * studentTotal
+        data["currentGPA"] = "{:.2f}".format((100/total) * studentTotal)
         data["newGPA"] = 100/(total) * (studentTotal + neededTotal)
         data["modifiedCourses"] = belowAVG
         data ["results"] = True
@@ -231,3 +253,9 @@ def newsMore(request):
         "image": news.image
     }
     return render(request, "newsMore.html", data)
+
+def majorMore(request):
+    data = {
+        "majors": [Major.objects.get(pk=request.GET["id"])]
+    }
+    return render(request, "majors.html",data)

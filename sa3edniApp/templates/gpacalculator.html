@@ -9,13 +9,17 @@
           <p class="lead">Needed GPA&nbsp;</p>
           <form class="" action="/calculator" method="POST">
             {% csrf_token %}
-            <div class="form-group border-bottom border-dark"> <input type="number" min=0 max=100 class="form-control" placeholder="enter the GPA you need." required="required" name="neededGPA"> </div>
+            <div class="form-group border-bottom border-dark"> <input type="number" min=50 max=100 class="form-control" placeholder="enter the GPA you need." required="required" name="neededGPA"> </div>
             <p class="lead">Input here your tawjihi grades of the following courses. and the system will tell you what grades you should get higher marks in.</p>
             {% for course in courses %}
-                <div class="form-group"> <label>{{course.name}}</label> <input min="0" type="number" max="{{course.maxGrade}}" name="{{course.name}}" placeholder="Grade" required="required"> out of {{course.maxGrade}}</div> 
+                <div class="form-group"> <label>{{course.name}}</label>
+                <div class="col-md-3">
+
+                </div>
+                <input min="0" type="number" max="{{course.maxGrade}}" name="{{course.name}}" placeholder="Grade" required="required"> out of {{course.maxGrade}}</div>
             {% endfor %}
             <button type="submit" class="btn btn-primary">Calculate</button>
-            
+
           </form>
         </div>
         {% if results %}
@@ -27,7 +31,7 @@
                 <h2 class="">Your current GPA is:&nbsp; </h2>
                 <h4 class="">{{currentGPA}}</h4>
                 <h2 class="">You need to get {{neededTotal}} grades in total.</h2>
-                
+
                 {% for course in modifiedCourses %}
                     <p class="lead">you need to get {{course.grade}} in {{course.subject}}</p>
                 {% endfor %}

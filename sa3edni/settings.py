@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sa3edniApp'
+    'sa3edniApp',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'sa3edniApp')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "sa3edniApp/static"),
 ]
+
+
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sa3edniuni@gmail.com'
+EMAIL_HOST_PASSWORD = 'sa3edni20150620@@' #past the key or password app here
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Sa3edniUni'
+
